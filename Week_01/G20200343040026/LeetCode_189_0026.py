@@ -1,5 +1,4 @@
 # 解法一:三次翻转
-
 class Solution:
     def rotate(self, nums: List[int], k: int) -> None:
         """
@@ -44,5 +43,19 @@ class Solution:
             insert = tmp
             index = (index+k)%len(nums)
 
-
         return
+
+# 解法三:栈入栈出
+class Solution:
+    def rotate(self, nums: List[int], k: int) -> None:
+        """
+        Do not return anything, modify nums in-place instead.
+        """
+        if len(nums)<=1:
+            return
+
+        k = k%len(nums) if k>=len(nums) else k
+
+        for i in range(k):
+            nums.insert(0,nums[len(nums)-1])
+            nums.pop(-1)
