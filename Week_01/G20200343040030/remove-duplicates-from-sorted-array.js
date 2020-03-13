@@ -10,9 +10,8 @@ var removeDuplicates = function(nums) {
     //如果出现新的数字，就和上一个交换的位置的下一个交换
     //利用了排序好的特性
     if (nums[i] != nums[j]) {
-      nums[j + 1] = nums[i];
-      j++;
+      nums[++j] = nums[i];
     }
   }
-  return j + 1;
+  return ++j;
 };
