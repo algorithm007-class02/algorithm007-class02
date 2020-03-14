@@ -1,7 +1,7 @@
 class Solution {
     public void merge(int[] nums1, int m, int[] nums2, int n) {
         if(nums1.length == 0 || nums2.length == 0) return;
-        int indexM = m-1,indexN = n-1,length = m+n,last = length-1;
+        int indexM = m-1,indexN = n-1,last = m+n-1;
         while(last >= 0){
             if(indexM < 0) {
                 nums1[last--] = nums2[indexN--];
