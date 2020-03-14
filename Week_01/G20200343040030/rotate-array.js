@@ -51,9 +51,8 @@ var rotateV3 = function(nums, k) {
     let currv = nums[start]; //当前值放在初始位置
     let current = start;
     do {
-      //确定下一个值的位置
+      //确定下一个值的位置,并把值先保存
       let next = (current + k) % n;
-      //把下一个要交换的位置值先保存
       let temp = nums[next];
       //把当前值放在下一个位置
       nums[next] = currv;
