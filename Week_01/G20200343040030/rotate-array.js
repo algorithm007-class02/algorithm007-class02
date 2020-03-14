@@ -16,3 +16,21 @@ var rotateV1 = function(nums, k) {
     j++;
   }
 };
+
+/**
+ * 空间换时间
+ * 时间复杂度O(n) 空间复杂度O(n)
+ * @param {number[]} nums
+ * @param {number} k
+ * @return {void} Do not return anything, modify nums in-place instead.
+ */
+var rotateV2 = function(nums, k) {
+  let result = new Array(nums.length);
+  for (let i = 0; i < nums.length; i++) {
+    result[(i + k) % nums.length] = nums[i];
+  }
+
+  for (let i = 0; i < nums.length; i++) {
+    nums[i] = result[i];
+  }
+};
