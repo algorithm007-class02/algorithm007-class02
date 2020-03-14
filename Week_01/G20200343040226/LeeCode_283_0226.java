@@ -5,7 +5,7 @@ package com.logic;
  * @Date: 2020/3/14 23:48
  * @Description:
  */
-public class LeeCode_283 {
+public class LeeCode_283_0226 {
     public void moveZeroes(int[] nums) {
         int index = 0;
         int temp = 0;

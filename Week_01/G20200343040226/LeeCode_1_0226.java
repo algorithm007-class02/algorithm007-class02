@@ -5,7 +5,7 @@ package com.logic;
  * @Date: 2020/3/14 23:44
  * @Description:
  */
-public class LeeCode_1 {
+public class LeeCode_1_0226 {
     public int[] twoSum(int[] nums, int target) {
         int a[] = new int[2];
         for(int i = 0; i < nums.length - 1 ; i ++) {
