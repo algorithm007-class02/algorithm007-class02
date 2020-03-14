@@ -1,5 +1,6 @@
-<?php
+//<?php
 /**
+ * @lc app=leetcode.cn id=26 lang=php
  * @author 刘兵兵 <lbbniu@gmail.com>
  * 26. 删除排序数组中的重复项
  * 给定一个排序数组，你需要在 原地 删除重复出现的元素，使得每个元素只出现一次，返回移除后数组的新长度。

@@ -1,5 +1,6 @@
-<?php
+//<?php
 /**
+ * @lc app=leetcode.cn id=66 lang=php
  * @author 刘兵兵 <lbbniu@gmail.com>
  * 66. 加一
  * 给定一个由整数组成的非空数组所表示的非负整数，在该数的基础上加一。
