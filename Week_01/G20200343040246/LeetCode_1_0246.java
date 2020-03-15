@@ -3,10 +3,10 @@ package Week_01.G20200343040246;
 import java.util.Map;
 import java.util.HashMap;
 
-public class TwoSum {
+public class LeetCode_1_0246 {
 
     public static void main(String[] args) {
-        Solution solution = new TwoSum().new Solution();
+        Solution solution = new LeetCode_1_0246().new Solution();
         int[] nums = new int[]{1,5,6,8,9};
         solution.twoSum(nums, 10);
         solution.twoSum2(nums, 10);

@@ -1,8 +1,8 @@
 package Week_01.G20200343040246;
 
-public class RemoveDuplicates {
+public class LeetCode_26_0246 {
     public static void main(final String[] args) {
-        Solution solution = new RemoveDuplicates().new Solution();
+        Solution solution = new LeetCode_26_0246().new Solution();
         int[] nums = new int[]{0,0,1,1,1,2,2,3,3,4};
         solution.removeDuplicates(nums);
     }

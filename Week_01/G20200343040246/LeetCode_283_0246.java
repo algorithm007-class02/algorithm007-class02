@@ -1,6 +1,6 @@
 package Week_01.G20200343040246;
 
-public class MoveZeroes {
+public class LeetCode_283_0246 {
     public static void main(String[] args) {
         
     }

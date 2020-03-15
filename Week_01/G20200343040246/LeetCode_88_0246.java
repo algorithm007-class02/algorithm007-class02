@@ -2,7 +2,7 @@ package Week_01.G20200343040246;
 
 import java.util.*;
 
-public class MergeArray {
+public class LeetCode_88_0246 {
     public static void main(String[] args) {
         
     }

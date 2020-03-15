@@ -1,6 +1,6 @@
 package Week_01.G20200343040246;
 
-public class PlusOne {
+public class LeetCode_66_0246 {
     public static void main(String[] args) {
         
     }
