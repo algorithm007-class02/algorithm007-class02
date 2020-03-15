@@ -56,7 +56,7 @@ func main() {
 }
 
 /**
-	left right指针作比较，将相等的移到右侧
+	left right指针作比较，将相等的移到右侧 d
  */
 func removeDuplicates(nums []int) int {
 	left, right := 0, 1
