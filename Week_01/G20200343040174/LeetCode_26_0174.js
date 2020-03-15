@@ -6,9 +6,15 @@
  * @param {number[]} nums
  * @return {number}
  */
-var removeDuplicates = function(nums) {
-
-};
+var removeDuplicates = function (nums) {
+    var len = 1;
+    for (var i = 1; i < nums.length; i++){
+        if (nums[i] != nums[i-1]){
+            nums[len++] = nums[i];
+        }
+    }s
+    return len
+}
 
 /*
 原地算法：不依赖额外的资源或者依赖少数的额外资源，仅依靠输出来覆盖输入的一种算法操作。
