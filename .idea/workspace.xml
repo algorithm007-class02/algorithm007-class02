@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="3195806a-3c29-4de0-b4b1-b98af9bca9aa" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/Week_01/G20200343040286/LeetCode_1_0286" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Week_01/G20200343040286/LeetCode_21_0286" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Week_01/G20200343040286/LeetCode_26_0286" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Week_01/G20200343040286/LeetCode_283_0286" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1Z9n5B7CTqm5OUMtbI754Dz18ee" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/Week_01/G20200343040286" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="settings.editor.selected.configurable" value="terminal" />
+  </component>
+  <component name="RebelAgentSelection">
+    <selection>jr</selection>
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Week_01/G20200343040286" />
+    </key>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="3195806a-3c29-4de0-b4b1-b98af9bca9aa" name="Default Changelist" comment="" />
+      <created>1584259991635</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1584259991635</updated>
+      <workItem from="1584259993599" duration="5876000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="1480" y="870" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1584266684630">
+      <screen x="0" y="23" width="3840" height="2137" />
+    </state>
+    <state x="1480" y="870" key="#com.intellij.fileTypes.FileTypeChooser/0.23.3840.2137@0.23.3840.2137" timestamp="1584266684630" />
+    <state x="1704" y="987" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog" timestamp="1584262132411">
+      <screen x="0" y="23" width="3840" height="2137" />
+    </state>
+    <state x="1704" y="987" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog/0.23.3840.2137@0.23.3840.2137" timestamp="1584262132411" />
+  </component>
+</project>
