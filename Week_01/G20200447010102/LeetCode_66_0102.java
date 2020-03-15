@@ -1,4 +1,4 @@
-class Solution {
+class LeetCode_66_0102 {
     public int[] plusOne(int[] digits) {
         int len = digits.length;
         for(int i = len - 1; i >= 0; i--) {
@@ -11,5 +11,4 @@ class Solution {
         digits[0] = 1;
         return digits;
     }
-
 }
