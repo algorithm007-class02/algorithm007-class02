@@ -27,7 +27,7 @@
  */
 
 /**
- * 暴力解法，通过循环，每次向右移动一个位置
+ * 暴力解法，通过循环，每次向右移动一个位置  189
  * 时间复杂度：O(n*k)，数组长度n,移动一个位置遍历n次，移动k个位置，遍历 n*k次
  * 空间复杂度 O(1)
  */
@@ -49,60 +49,42 @@ class Solution {
  * 添加新数组求解
  * 时间复杂度：O(n)    虽然用了两个for循环，但是没有嵌套一起
  * 空间复杂度：O(n)     额外使用了长度n的数组newArr
+ * class Solution {
+ *     public void rotate(int[] nums, int k) {
+ *         int[] newArr = new int[nums.length];
+ *         for ( int i = 0; i < nums.length; ++i) {
+ *             newArr[ (i + k) % nums.length] = nums[i];
+ *         }
+ *         for ( int j = 0; j < nums.length; ++j) {
+ *             nums[j] = newArr[j];
+ *         }
+ *     }
+ * }
  */
-class Solution {
-    public void rotate(int[] nums, int k) {
-        int[] newArr = new int[nums.length];
-        for ( int i = 0; i < nums.length; ++i) {
-            newArr[ (i + k) % nums.length] = nums[i];
-        }
-        for ( int j = 0; j < nums.length; ++j) {
-            nums[j] = newArr[j];
-        }
-    }
-}
+
 
 /**
  *  反转
  *  时间复杂度：O(n)   n个元素完全反转1次，部分反转2次
  *  空间复杂度：O(1)   没有额外的空间
+ *  class Solution {
+ *     public void rotate(int[] nums, int k) {
+ *         k %= nums.length;
+ *         reverse(nums, 0, nums.length-1);
+ *         reverse(nums, 0, k-1);
+ *         reverse(nums, k,nums.length-1);
+ *     }
+ *
+ *     public void reverse(int[] nums, int begin, int end) {
+ *         while (begin < end) {
+ *             int temp = nums[begin];
+ *             nums[begin] = nums[end];
+ *             nums[end] = temp;
+ *             begin++;
+ *             end--;
+ *         }
+ *     }
+ * }
  */
-class Solution {
-    public void rotate(int[] nums, int k) {
-        k %= nums.length;
-        reverse(nums, 0, nums.length-1);
-        reverse(nums, 0, k-1);
-        reverse(nums, k,nums.length-1);
-    }
 
-    public void reverse(int[] nums, int begin, int end) {
-        while (begin < end) {
-            int temp = nums[begin];
-            nums[begin] = nums[end];
-            nums[end] = temp;
-            begin++;
-            end--;
-        }
-    }
-}
 
-class Solution {
-    public void rotate(int[] nums, int k) {
-        k %= nums.length;
-        reverse(nums, 0, nums.length-1);
-        reverse(nums, 0, k-1);
-        reverse(nums, k,nums.length-1);
-    }
-
-    public void reverse(int[] nums, int begin, int end) {
-        int i = begin;
-        for (int j = end; j >= 0; --j) {
-            if (i < j) {
-                int temp = nums[i];
-                nums[i] = nums[j];
-                nums[j] = temp;
-                ++i;
-            }
-        }
-    }
-}

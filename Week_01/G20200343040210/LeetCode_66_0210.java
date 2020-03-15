@@ -39,45 +39,25 @@ class Solution {
 }
 
 /**
- * 尝试用 while
- * 时间复杂度：O(n)    最少执行一次，最差执行数组长度n
- * 空间复杂度：O(n)    使用了额外的 n+1长度的数组
- */
-class Solution {
-    public int[] plusOne(int[] digits) {
-        int i = digits.length - 1;
-        while (i >= 0) {
-            digits[i]++;
-            digits[i] %= 10;
-            if (digits[i] != 0) return digits;
-            i--;
-        }
-        digits = new int[digits.length + 1];
-        digits[0] = 1;
-        return digits;
-    }
-}
-
-/**
  * 尝试递归方法
+ * class Solution {
+ *     public int[] plusOne(int[] digits) {
+ *         digits = plus(digits,digits.length-1);
+ *         return digits;
+ *     }
+ *     public int[] plus(int[] digits, int i) {
+ *         if(digits[i] != 9){
+ *             digits[i]++;
+ *             return digits;
+ *         }else{
+ *             digits[i] = 0;
+ *             if (i == 0) {
+ *                 int[] newArr= new int[digits.length + 1];
+ *                 newd[0] = 1;
+ *                 return newd;
+ *             }
+ *             return plus(digits,i-1);
+ *         }
+ *     }
+ * }
  */
-class Solution {
-    public int[] plusOne(int[] digits) {
-        digits = plus(digits,digits.length-1);
-        return digits;
-    }
-    public int[] plus(int[] digits, int i) {
-        if(digits[i] != 9){
-            digits[i]++;
-            return digits;
-        }else{
-            digits[i] = 0;
-            if (i == 0) {
-                int[] newArr= new int[digits.length + 1];
-                newd[0] = 1;
-                return newd;
-            }
-            return plus(digits,i-1);
-        }
-    }
-}
