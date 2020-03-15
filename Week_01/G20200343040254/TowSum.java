@@ -1,7 +1,7 @@
 /**
  * 
  */
-package app.foundation.common.utils;
+package week01;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -12,8 +12,12 @@ import java.util.Map;
  */
 public class TowSum {
 	public int[] twoSum(int[] nums, int target) {
-
+		
+		if (nums == null | nums.length <= 0)
+			return new int[0];
+		
 		Map<Integer, Integer> hash = new HashMap<>();
+
 		for (int i = 0; i < nums.length; i++) {
 			int c = target - nums[i];
 			if (hash.containsKey(c)) {
