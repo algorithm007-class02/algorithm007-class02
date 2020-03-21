@@ -20,6 +20,7 @@ var maxSlidingWindow = function(nums, k) {
 };
 
 /**
+ * 有序双端队列
  * 时间复杂度O(n)
  * @param {number[]} nums
  * @param {number} k
