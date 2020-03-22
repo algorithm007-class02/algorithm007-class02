@@ -1,28 +1,48 @@
 class MyCircularDeque:
 
     def __init__(self, k: int):
-        self.q = collections.deque(maxlen=k)
+        self.k=k
+        self.q=[]
 
     def insertFront(self, value: int) -> bool:
-        return len(self.q) < self.q.maxlen and (self.q.appendleft(value) or True)
+       if len(self.q)<self.k :
+           self.q.insert(0,value)
+           return True
+       else :
+           return False
+
 
     def insertLast(self, value: int) -> bool:
-        return len(self.q) < self.q.maxlen and (self.q.append(value) or True)
+        if len(self.q)<self.k :
+            self.q+=[value]
+            return True
+        else :
+            return False
+
 
     def deleteFront(self) -> bool:
-        return self.q and (self.q.popleft() or True)
+    if self.q :
+        self.q.pop(0)
+        return True
+    else :
+        return False
     
+
     def deleteLast(self) -> bool:
-        return self.q and (self.q.pop() or True)
-        
+        return self.q.pop() <= float('inf') if self.q else False
+
+
     def getFront(self) -> int:
-        return not self.q and -1 or self.q[0]
-    
+        return self.q[0] if self.q else -1
+
+
     def getRear(self) -> int:
-        return not self.q and -1 or self.q[-1]
+        return self.q[-1] if self.q else -1
+
 
     def isEmpty(self) -> bool:
-        return not self.q
+        return len(self.q) == 0
 
     def isFull(self) -> bool:
-        return len(self.q) == self.q.maxlen
+        return len(self.q) ==self.k
+
