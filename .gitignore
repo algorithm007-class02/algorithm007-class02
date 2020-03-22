@@ -40,3 +40,4 @@ logs/**
 *.log
 src/main/resources/bootstrap-local.*
 src/main/resources/bootstrap.*
+/.idea/
