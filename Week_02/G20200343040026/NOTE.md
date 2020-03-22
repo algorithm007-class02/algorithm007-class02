@@ -1,4 +1,4 @@
-# 学习笔记
+﻿# 学习笔记
 ## leetcode_1
 1. 重温哈希法，利用课堂的字典思想记录每个遍历过的元素的下标，利用散列表查询O(1)的性质达到快速匹配的目的，时间复杂度和空间复杂度都是O(n)，典型的用空间换时间的思想。
 
@@ -12,4 +12,4 @@
 ## leetcode_42
 1. 双指针法，首先找到最高点，然后用两个指针从前后向其逼近，在遍历过程中记录遍历过得最高点，如果遇到下一个高度比之前遇到过的最高点低，则求差并加入结果，否则当前为遍历过得最高点，直到遇到全局最高点停止
 2. 左右的扫描法，利用几何规律，分别向左和向右扫描，最后求交集，如图所示
-！[img](https://github.com/jasonlbx13/7days_algorithm/blob/master/homework_0216/pic/3.jpg)
+![img](https://github.com/jasonlbx13/7days_algorithm/blob/master/homework_0216/pic/3.jpg)
