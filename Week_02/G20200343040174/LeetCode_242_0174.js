@@ -7,7 +7,6 @@
  * @param {number} target
  * @return {number[]}
  */
-
 var isAnagram = function(s, t) {
     const map = new Map()
     for (let i = 0; i < s.length; i++) {
