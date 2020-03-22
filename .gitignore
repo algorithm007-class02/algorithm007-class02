@@ -1,35 +1,10 @@
-HELP.md
-target/
-*/target/
-!.mvn/wrapper/maven-wrapper.jar
-!**/src/main/**
-!**/src/test/**
-LOG_BASE_IS_UNDEFINED
-*/LOG_BASE_IS_UNDEFINED/
+# Created by .ignore support plugin (hsz.mobi)
+.idea/
 
-### STS ###
-.apt_generated
-.classpath
-.factorypath
-.project
-.settings
-.springBeans
-.sts4-cache
+memorys
 
-### IntelliJ IDEA ###
-.idea
-*.iws
-*.iml
-*.ipr
-/*.iml
-
-### NetBeans ###
-/nbproject/private/
-/nbbuild/
-/dist/
-/nbdist/
-/.nb-gradle/
-build/
+0174_Week01(js)
+LeetCode_题目序号_0174
 
 ### VS Code ###
 .vscode/
