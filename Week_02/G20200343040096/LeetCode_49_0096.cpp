@@ -15,7 +15,3 @@ public:
         return res;
     }
 };
-
-
-["MyCircularDeque","insertFront","deleteLast","getRear","getFront","getFront","deleteFront","insertFront","insertLast","insertFront","getFront","insertFront"]
-[[4],[9],[],[],[],[],[],[6],[5],[9],[],[6]]
