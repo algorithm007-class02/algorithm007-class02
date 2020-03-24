@@ -6,5 +6,13 @@ memorys
 0174_Week01(js)
 LeetCode_题目序号_0174
 
+### VS Code ###
+.vscode/
 
-【0174_Week01】关于...
+### other ###
+bootstrap*
+logs/**
+*.log
+src/main/resources/bootstrap-local.*
+src/main/resources/bootstrap.*
+/.idea/
