@@ -24,7 +24,7 @@ class LeetCode_429_0246 {
         
     }
 
-    // 1. recursive DFS
+    // 1. recursion DFS
     public List<List<Integer>> levelOrder(Node root) {
         List<List<Integer>> res = new ArrayList<>();
         if (root == null) return res;
@@ -43,7 +43,7 @@ class LeetCode_429_0246 {
         }
     }
 
-    // 2. iterative BFS
+    // 2. iteration BFS
     public List<List<Integer>> levelOrder1(Node root) {
         List<List<Integer>> res = new ArrayList<>();
         if (root == null) return res;

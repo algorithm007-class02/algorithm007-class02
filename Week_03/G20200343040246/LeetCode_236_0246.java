@@ -15,7 +15,7 @@ class LeetCode_236_0246 {
         
     }
 
-    // 1. recursive
+    // 1. recursion
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
         if (root == null || root == p || root == q) {
             return root;
@@ -25,7 +25,7 @@ class LeetCode_236_0246 {
         return left == null ? right : right == null ? left : root;
     }
 
-    // 2. iterative
+    // 2. iteration
     public TreeNode lowestCommonAncestor1(TreeNode root, TreeNode p, TreeNode q) {
         Stack<TreeNode> stack = new Stack<>();
         HashMap<TreeNode, TreeNode> parent = new HashMap<>();

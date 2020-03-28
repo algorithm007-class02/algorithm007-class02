@@ -15,7 +15,7 @@ class LeetCode_144_0246 {
         
     }
 
-    // 1. recursive
+    // 1. recursion
     public List<Integer> preorderTraversal(TreeNode root) {
         List<Integer> res = new ArrayList<>();
         helper(root, res);
@@ -29,7 +29,7 @@ class LeetCode_144_0246 {
         helper(root.right, res);
     }
 
-    // 2. iterative
+    // 2. iteration
     public List<Integer> preorderTraversal1(TreeNode root) {
         List<Integer> res = new ArrayList<>();
         Stack<TreeNode> stack = new Stack<>();

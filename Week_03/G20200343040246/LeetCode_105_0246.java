@@ -13,7 +13,7 @@ class LeetCode_105_0246 {
         
     }
 
-    // 1. recursive
+    // 1. recursion
     public TreeNode buildTree(int[] preorder, int[] inorder) {
         if (preorder == null || preorder.length == 0 || 
             inorder == null || inorder.length ==0 || preorder.length != inorder.length) {
@@ -35,7 +35,7 @@ class LeetCode_105_0246 {
             index++;
         }
 
-        // recursive
+        // recursion
         root.left = helper(preorder, preStart + 1, preStart + index, inorder, inStart, inStart + index - 1);
         root.right = helper(preorder, preStart + index + 1, preEnd, inorder, inStart + index + 1, inEnd);
         return root;

@@ -22,7 +22,7 @@ class LeetCode_589_0246 {
         
     }
 
-    // 1. recursive
+    // 1. recursion
     public List<Integer> postorder1(Node root) {
         List<Integer> res = new ArrayList<>();
         helper(root, res);
@@ -37,7 +37,7 @@ class LeetCode_589_0246 {
         res.add(root.val);
     }
 
-    // 2. iterative
+    // 2. iteration
     public List<Integer> postoder2(Node root) {
         List<Integer> res = new ArrayList<>();
         if (root == null) return res;
