@@ -1,0 +1,37 @@
+Prorirty Queue (根据元素重要性，优先队列）
+插入: O(1)
+取出: O(logN)
+
+属性：
+    1. Queue为接口，Prorirty Queue为Queue的实现类，同时继承了Serializable, Iterable<E>, Collection<E>, Queue<E>
+    2. PQ内部的元素如果没有特别的声明，则为自由储存，否则根据Comparator定义的规则储存
+    3. 不允许为空、不允许插入不可比较的OBJ
+    4. PQ为动态增长的
+    5. 底层的实现较为复杂 主要的实现方法包括Heap bst(binary search tree) avl treap
+
+主要的方法有：
+    Add、Offer
+    peek
+    Remove、poll
+    Comparator()
+
+Add()方法return offer()方法，offer方法如果为空抛出NullPointerException空指针异常；
+检查数组长度
+	如果够长，则长度+1
+		如果为空，则在第0位存储
+		否则siftUp(i,e);带着数组长度和存储obj开始存储
+			如果comparator为空 siftUpUsingComparator(k,x);否则siftUpComparable(k,x);
+			
+			Insert sitemxatpositionk,maintaining heap invariant by
+			promoting x up the tree until it is greater than or equal to
+			its parent, or is the root.
+			
+			transientObject[]queue;//non-privatetosimplifynestedclassaccess
+			
+
+Grow(), 如果原始数组长短小于64，数组长度*2+2，如果大于64则增加数数组长度的50%
+
+
+
+
+
