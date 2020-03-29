@@ -1,0 +1,163 @@
+1.是什么
+	作为最常用的Map类，hashMap是基于哈希表实现的，继承了AbstractMap并且实现了Map接口
+	哈希表将键的 Hash 值映射到内存地址，即根据键获取对应的值，并将其存储到内存地址。
+	也就是说 HashMap 是根据键的 Hash 值来决定对应值的存储位置。
+	通过这种索引方式，HashMap 获取数据的速度会非常快。
+
+2.重要属性
+	从 HashMap 的源码中，我们可以发现，HashMap 是由一个 Node 数组构成，每个 Node 包含了一个 key-value 键值对。
+	transient Node<K,V>[] table;
+
+	Node 类作为 HashMap 中的一个内部类，除了 key、value 两个属性外，还定义了一个 next 指针。
+	当有哈希冲突时，HashMap 会用之前数组当中相同哈希值对应存储的 Node 对象，通过指针指向新增的相同哈希值的 Node 对象的引用。
+	static class Node<K,V> implements Map.Entry<K,V> {
+        final int hash;
+        final K key;
+        V value;
+        Node<K,V> next;
+
+        Node(int hash, K key, V value, Node<K,V> next) {
+            this.hash = hash;
+            this.key = key;
+            this.value = value;
+            this.next = next;
+        }
+	}
+
+	加载因子（loadFactor）和边界值（threshold）
+	int threshold;
+	final float loadFactor;
+	
+	在初始化 HashMap 时，就会涉及到这两个关键初始化参数。
+	public HashMap(int initialCapacity, float loadFactor) {
+        if (initialCapacity < 0)
+            throw new IllegalArgumentException("Illegal initial capacity: " +
+                                               initialCapacity);
+        if (initialCapacity > MAXIMUM_CAPACITY)
+            initialCapacity = MAXIMUM_CAPACITY;
+        if (loadFactor <= 0 || Float.isNaN(loadFactor))
+            throw new IllegalArgumentException("Illegal load factor: " +
+                                               loadFactor);
+        this.loadFactor = loadFactor;
+        this.threshold = tableSizeFor(initialCapacity);
+    }
+	LoadFactor 属性是用来间接设置 Entry 数组（哈希表）的内存空间大小，在初始 HashMap 不设置参数的情况下，默认 LoadFactor 值为 0.75
+	加载因子也叫扩容因子或负载因子，用来判断什么时候进行扩容的，假如加载因子是0.5，HashMap的初始化容量是16，
+	那么当HashMap中有16*0.5=8个元素时，HashMap就会进行扩容
+
+	static final float DEFAULT_LOAD_FACTOR = 0.75f;
+	
+	Threshold 是通过初始容量和 LoadFactor 计算所得，在初始 HashMap 不设置参数的情况下，默认边界值为 12
+	
+	思考：
+	加载因子为什么是0.75
+		出于容量和性能之间平衡的结果
+			当加载因子设置比较大的时候，扩容的门槛就被提高了，扩容发生的频率比较低，占用的空间会比较小，
+			但此时发生Hash冲突的几率就会提升，因此需要更复杂的数据结构来存储元素，这样对元素的操作时间就会增加，运行效率也会因此降低
+			而当加载因子值比较小的时候，扩容的门槛会比较低，因此会占用更多的空间，此时元素的存储就比较稀疏，
+			发生哈希冲突的可能性就比较小，因此操作性能会比较高。
+			
+			对于使用链表法的哈希表来说，查找一个元素的平均时间是 O(1+n)，这里的 n 指的是遍历链表的长度，
+			因此加载因子越大，对空间的利用就越充分，这就意味着链表的长度越长，查找效率也就越低。
+			如果设置的加载因子太小，那么哈希表的数据将过于稀疏，对空间造成严重浪费。
+			
+			为了提升扩容效率，HashMap的容量（capacity）有一个固定的要求，那就是一定是2的幂。
+			所以，如果负载因子是3/4的话，那么和capacity的乘积结果就可以是一个整数
+
+
+
+	
+3.重要方法
+	查询
+	新增
+	扩容
+	
+
+5.哈希冲突原理
+	鸽巢原理（也叫抽屉原理）。这个原理本身很简单，它是说，如果有 10 个鸽巢，有 11 只鸽子，那肯定有 1 个鸽巢中的鸽子数量多于 1 个，
+	换句话说就是，肯定有 2 只鸽子在 1 个鸽巢内
+	
+	
+6.哈希冲突如何查找并确认元素
+	当哈希冲突时我们需要通过判断 key 值是否相等，才能确认此元素是不是我们想要的元素。
+
+
+##加载因子为什么是0.75
+8.容量为什么是2的整数次幂
+	
+	减少哈希冲突，均匀分布元素。
+	2的幂次方减1后每一位都是1，让数组每一个位置都能添加到元素。
+例如十进制8，对应二进制1000，减1是0111，这样在&hash值使数组每个位置都是可以添加到元素的，如果有一个位置为0，那么无论hash值是多少那一位总是0，例如0101，&hash后第二位总是0，也就是说数组中下标为2的位置总是空的。
+如果初始化大小设置的不是2的幂次方，hashmap也会调整到比初始化值大且最近的一个2的幂作为capacity。
+
+9.数组长度不足怎么办
+	扩容
+
+  1.8扩容优化
+10.如何使哈希表数据更均匀，减少hash聚集
+	从哈希值不能反向推导出原始数据（所以哈希算法也叫单向哈希算法）；
+	对输入数据非常敏感，哪怕原始数据只修改了一个 Bit，最后得到的哈希值也大不相同；
+	散列冲突的概率要很小，对于不同的原始数据，哈希值相同的概率非常小；
+	哈希算法的执行效率要尽量高效，针对较长的文本，也能快速地计算出哈希值。
+		
+		
+1.8 比1.7 的优化
+	java7和java8在实现HashMap上有所区别，当然java8的效率要更好一些，主要是java8的HashMap在java7的基础上增加了红黑树这种数据结构，
+	使得在桶里面查找数据的复杂度从O(n)降到O(logn)，当然还有一些其他的优化，比如resize的优化等。
+
+
+
+12.为什么线程不安全
+	1.在JDK1.7中，当并发执行扩容操作时会造成环形链和数据丢失的情况。
+	2.在JDK1.8中，在并发执行put操作时会发生数据覆盖的情况。
+	1.7
+	11.如何导致死循环
+		以JDK1.7为例，假设HashMap默认大小为2，原本HashMap中有一个元素key(5)，我们再使用两个线程：t1添加元素key(3)，t2添加元素key(7)，
+		当元素 key(3) 和 key(7) 都添加到 HashMap 中之后，线程 t1 在执行到 Entry<K,V> next = e.next; 时，交出了 CPU 的使用权，源码如下
+
+		void transfer(Entry[] newTable, boolean rehash) {
+        int newCapacity = newTable.length;
+        for (Entry<K,V> e : table) {
+            while(null != e) {
+                Entry<K,V> next = e.next; // 线程一执行此处
+                if (rehash) {
+                    e.hash = null == e.key ? 0 : hash(e.key);
+                }
+                int i = indexFor(e.hash, newCapacity);
+                e.next = newTable[i];
+                newTable[i] = e;
+                e = next;
+            }
+        }
+    }
+	那么此时线程t1中的e指向了key(3)，而next指向了key(7)；之后线程t2重新rehash之后链表的顺序被反转，链表的位置变成了key(5)→key(7)→key(3)，
+	其中“→”用来表示下一个元素。当t1重新获得执行权之后，先执行newTalbe[i]=e把key(3)的next设置为key(7)，而下次循环时查询到key(7)的next元素为key(3)，
+	于是就形成了 key(3) 和 key(7) 的循环引用，因此就导致了死循环的发生
+	
+	这段代码是HashMap的扩容操作，重新定位每个桶的下标，并采用头插法将元素迁移到新数组中。
+	头插法会将链表的顺序翻转，这也是形成死循环的关键点。理解了头插法后再继续往下看是如何造成死循环以及数据丢失的。
+
+
+	1.8
+		根据上面JDK1.7出现的问题，在JDK1.8中已经得到了很好的解决，如果你去阅读1.8的源码会发现找不到transfer函数，
+		因为JDK1.8直接在resize函数中完成了数据迁移。另外说一句，JDK1.8在进行元素插入时使用的是尾插法。
+		
+		其中第六行代码是判断是否出现hash碰撞，假设两个线程A、B都在进行put操作，并且hash函数计算出的插入下标是相同的，
+		当线程A执行完第六行代码后由于时间片耗尽导致被挂起，而线程B得到时间片后在该下标处插入了元素，完成了正常的插入，
+		然后线程A获得时间片，由于之前已经进行了hash碰撞的判断，所有此时不会再进行判断，而是直接进行插入，这就导致了线程B插入的数据被线程A覆盖了，
+		从而线程不安全。
+
+		此之前，还有就是代码的第38行处有个++size，我们这样想，还是线程A、B，这两个线程同时进行put操作时，假设当前HashMap的zise大小为10，
+		当线程A执行到第38行代码时，从主内存中获得size的值为10后准备进行+1操作，但是由于时间片耗尽只好让出CPU，
+		线程B快乐的拿到CPU还是从主内存中拿到size的值10进行+1操作，完成了put操作并将size=11写回主内存，然后线程A再次拿到CPU并继续执行
+		(此时size的值仍为10)，当执行完put操作后，还是将size=11写回内存，此时，线程A、B都执行了一次put操作，但是size的值只增加了1，
+		所有说还是由于数据覆盖又导致了线程不安全。
+
+
+
+13.多线程并发修改怎么办
+14.如何保证线程安全
+	下面
+15.jdk concurrenthashmap是如何解决的
+
+这样设计是因为中间有个7作为一个差值，来避免频繁的进行树和链表的转换，因为转换频繁也是影响性能的啊
