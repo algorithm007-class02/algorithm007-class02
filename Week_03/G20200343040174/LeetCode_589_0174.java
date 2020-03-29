@@ -20,6 +20,5 @@ public List<Integer> preorder(Node root) {
         }
 
 
-
         return list;
         }
