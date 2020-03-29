@@ -1,4 +1,4 @@
-package n_ary_tree_level_order_traversal
+package G20200343040028
 
 type Node struct {
 	Val      int
@@ -20,6 +20,7 @@ func levelOrder(root *Node) [][]int {
 	if root != nil {
 		traverseNode(root, 0)
 	}
+
 	return ans
 }
 
