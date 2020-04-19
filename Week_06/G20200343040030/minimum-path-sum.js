@@ -1,4 +1,6 @@
 /**
+ * dp方程：dp[i][j] = min(dp[i][j-1], dp[i-1][j]) + dp[i][j];
+ * 边界条件处理：i=0或者j=0的时候
  * @param {number[][]} grid
  * @return {number}
  */
