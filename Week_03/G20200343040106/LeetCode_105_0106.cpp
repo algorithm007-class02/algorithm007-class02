@@ -1,4 +1,6 @@
 #include<vector>
+using namespace std;
+#include<vector>
 #include<map>
 using namespace  std;
 class Solution {
