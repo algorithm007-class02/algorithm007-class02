@@ -82,10 +82,5 @@ class LeetCode_49_0206 {
         return result;
     }
 
-    public static void main(String[] args) {
-        String[] str = new String[]{"eat", "tea", "tan", "ate", "nat", "bat"};
-        LeetCode_49_0206 source = new LeetCode_49_0206();
-        source.groupAnagrams_2(str);
-    }
 }
 //leetcode submit region end(Prohibit modification and deletion)
