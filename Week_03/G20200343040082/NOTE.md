@@ -13,6 +13,70 @@
 
 常用实现方式： 完全二叉树(用数组存放元素)；
 
+```c++
+
+template <class T>
+void fr_heap<T>::push(const T &newElement) {
+    
+    if (heapSize == arrLength-1) { 
+        // TODO: 扩容
+    }
+    
+    // 0 位置不放数据
+    int currentIndex = ++heapSize;
+    // 从下往上走
+    // currentIndex = 1 root node
+    while (currentIndex != 1 && heap[currentIndex/2] < newElement) {
+    // 它的父节点 < 它，交换
+        heap[currentIndex] = heap[currentIndex/2];
+        currentIndex /= 2;
+    }
+    heap[currentIndex] = newElement;
+}
+
+template <class T>
+void fr_heap<T>::pop() {
+    
+    if (heapSize == 0) {
+        // error
+    }
+    
+    heap[1].~T(); // 推出top元素
+    
+    // 取最后一个元素
+    // 往heap中插入，从上往下走
+    T lastElement = heap[heapSize--];
+    
+    // 父节点编号 i
+    // 左子节点是 2*i
+    // 右子节点是 2*i+1
+    
+    // currentIndex - 父节点
+    // child - 左子节点
+    int currentIndex = 1, child = 2;
+    while (child <= heapSize) {
+        
+        // 如果左子节点 < 右子节点，则取右子节点编号
+        // 取左右最大的一个编号
+        if (child < heapSize && heap[child] < heap[child + 1])
+            child++;
+        
+        // 需要插入的元素大于左右节点，则它就是父节点
+        if (lastElement >= heap[child])
+            break;
+        
+        // 左右节点中最大的升为父节点
+        heap[currentIndex] = heap[child];
+        // 更新父节点指针
+        currentIndex = child;
+        // 更新左子节点
+        child *= 2;
+    }
+    heap[currentIndex] = lastElement;
+}
+
+```
+
 
 #### 递归：
 
