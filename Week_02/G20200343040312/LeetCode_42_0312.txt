@@ -1,0 +1,124 @@
+//给定 n 个非负整数表示每个宽度为 1 的柱子的高度图，计算按此排列的柱子，下雨之后能接多少雨水。
+//
+// 上面是由数组 [0,1,0,2,1,0,1,3,2,1,2,1] 表示的高度图，在这种情况下，可以接 6 个单位的雨水（蓝色部分表示雨水）。 感谢 Mar
+//cos 贡献此图。 
+//
+// 示例: 
+//
+// 输入: [0,1,0,2,1,0,1,3,2,1,2,1]
+//输出: 6 
+// Related Topics 栈 数组 双指针
+
+/**
+ * 自己的想法：
+ * 第一想法是，有点像[11]盛最多水的容器，[11]是计算最大，而这里是计算每一部分
+ *  1.紧相邻两项之间没有雨水
+ *  2.有雨水的必要条件是，
+ *      作为边界的两项都>0,且他们（两个下标）之间必定至少有一项的值小于较"矮"的边界，称这样的每一项为“底”
+ *  3.各部分雨水的面积计算公式-->（较"矮"边界的值-（每一项）底）*1的累和
+ *  4.如何遍历找到，两边之间有雨水的每一对边界？
+ *      emm不好想到好的方法，直接套公式，然后套用自己的"较"矮"边界的值-（每一项）底）*1的累和"公式
+ *  PS.可以实现（如果没有逻辑上疏漏的话），但感觉自己的思路走了弯路，先看看题解
+ * */
+
+/**
+ * 哇，这个精选题解中，按行按列的解法真是太赞了
+ * 感觉自己刚才想的时候还是没有归到“最小问题上”，导致计算公式有些“黑盒”，没有触及问题更加“小”的计算方式上
+ * 差了一点点
+ *
+ * 还有个“对于每根柱子，找到左边的最大值，再找到右边的最大值，然后；两者中取较小的 ，与“本根”柱子的差就是'本根'柱子上能存放的雨水”
+ * 这个解法感觉和我的有异曲同工之妙，值得品味
+ *
+ * 补，由于时间关系，一些解法还没练习到，只是临摹了一部分。有意思的题目。估计全看会要一天233
+ * */
+//leetcode submit region begin(Prohibit modification and deletion)
+class Solution {
+    public int trap(int[] height) {
+        /*
+        * 方法一：对话每根柱子...*/
+        int sum = 0;
+
+        if (height == null || height.length < 3) {
+            return 0;
+        }
+
+        int[] left = new int[height.length];
+        left[0] = height[0];
+
+        for (int i = 1; i < height.length; i++) {
+            left[i] = left[i - 1] > height[i] ? left[i - 1] : height[i];
+        }
+
+        int[] right = new int[height.length];
+        right[height.length - 1] = height[right.length - 1];
+
+        for (int i = height.length - 2; i >= 0; i--) {
+            right[i] = right[i + 1] > height[i] ? right[i + 1] : height[i];
+        }
+        for (int i = 1; i < height.length - 1; i++) {
+            sum += Math.min(left[i], right[i]) - height[i];
+        }
+
+        return sum;
+
+        /*
+        * 方法二：*/
+//        int sum = 0;
+//        int max = getMax(height);//找到最大的高度，以便遍历。
+//        for (int i = 1; i <= max; i++) {
+//            boolean isStart = false; //标记是否开始更新 temp
+//            int temp_sum = 0;
+//            for (int j = 0; j < height.length; j++) {
+//                if (isStart && height[j] < i) {
+//                    temp_sum++;
+//                }
+//                if (height[j] >= i) {
+//                    sum = sum + temp_sum;
+//                    temp_sum = 0;
+//                    isStart = true;
+//                }
+//            }
+//        }
+//        return sum;
+
+        /*
+        * 双指针*/
+//        int sum = 0;
+//        int max_left = 0;
+//        int max_right = 0;
+//        int left = 1;
+//        int right = height.length - 2; // 加右指针进去
+//        for (int i = 1; i < height.length - 1; i++) {
+//            //从左到右更
+//            if (height[left - 1] < height[right + 1]) {
+//                max_left = Math.max(max_left, height[left - 1]);
+//                int min = max_left;
+//                if (min > height[left]) {
+//                    sum = sum + (min - height[left]);
+//                }
+//                left++;
+//                //从右到左更
+//            } else {
+//                max_right = Math.max(max_right, height[right + 1]);
+//                int min = max_right;
+//                if (min > height[right]) {
+//                    sum = sum + (min - height[right]);
+//                }
+//                right--;
+//            }
+//        }
+//        return sum;
+
+    }
+}
+
+//private int getMax(int[] height) {
+//    int max = 0;
+//    for (int i = 0; i < height.length; i++) {
+//        if (height[i] > max) {
+//            max = height[i];
+//        }
+//    }
+//    return max;
+//}
+//leetcode submit region end(Prohibit modification and deletion)
