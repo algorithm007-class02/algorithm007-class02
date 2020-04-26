@@ -1,7 +1,7 @@
 //<?php
 /**
  * 上面的注释是为了直接提交leetcode
- * @lc app=leetcode.cn id=76 lang=php
+ * @lc app=leetcode.cn id=773 lang=php
  * @author 刘兵兵 <lbbniu@gmail.com>
  * 773. 滑动谜题
  * 在一个 2 x 3 的板上（board）有 5 块砖瓦，用数字 1~5 来表示, 以及一块空缺用 0 来表示.
@@ -38,12 +38,43 @@
 class Solution {
 
     /**
+     * bfs
      * @param Integer[][] $board
      * @return Integer
      */
     function slidingPuzzle($board) {
-        
-
+        $moves = [
+            [1, 3],
+            [0, 2, 4],
+            [1, 5],
+            [0, 4],
+            [1, 3, 5],
+            [2, 4]
+        ];
+        $used = [];
+        $cnt = 0;
+        $s = implode('', array_map(function ($val) {return implode('', $val);}, $board));
+        $q[] = [$s, strpos($s, '0')];
+        while ($q) {
+            $new = [];
+            foreach ($q as $val) {
+                [$s, $i] = $val;
+                $used[$s] = true;
+                if ($s == '123450') return $cnt;
+                foreach ($moves[$i] as $move) {
+                    $tmp = $s[$i];
+                    $s[$i] = $s[$move];
+                    $s[$move] = $tmp;
+                    if (!isset($used[$s])) $new[] = [$s, $move];
+                    $tmp = $s[$i];
+                    $s[$i] = $s[$move];
+                    $s[$move] = $tmp;
+                } 
+            }
+            $q = $new;
+            $cnt++;
+        }
+        return -1;
     }
 }
 // @lc code=end
