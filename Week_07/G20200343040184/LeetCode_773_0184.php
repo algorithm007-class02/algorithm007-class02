@@ -42,7 +42,7 @@ class Solution {
      * @param Integer[][] $board
      * @return Integer
      */
-    function slidingPuzzle($board) {
+    function slidingPuzzle1($board) {
         $moves = [
             [1, 3],
             [0, 2, 4],
@@ -62,17 +62,48 @@ class Solution {
                 $used[$s] = true;
                 if ($s == '123450') return $cnt;
                 foreach ($moves[$i] as $move) {
-                    $tmp = $s[$i];
-                    $s[$i] = $s[$move];
-                    $s[$move] = $tmp;
-                    if (!isset($used[$s])) $new[] = [$s, $move];
-                    $tmp = $s[$i];
-                    $s[$i] = $s[$move];
-                    $s[$move] = $tmp;
+                    $news = $s;
+                    $tmp = $news[$i];
+                    $news[$i] = $news[$move];
+                    $news[$move] = $tmp;
+                    if (!isset($used[$news])) $new[] = [$news, $move];
                 } 
             }
             $q = $new;
             $cnt++;
+        }
+        return -1;
+    }
+
+    /**
+     * bfs + A* search
+     * @param Integer[][] $board
+     * @return Integer
+     */
+    function slidingPuzzle($board) {
+        $moves = [[1, 3],[0, 2, 4],[1, 5],[0, 4],[1, 3, 5],[2, 4]];
+        $used = [];
+        $cnt = 0;
+        $s = implode('', array_map(function ($val) {return implode('', $val);}, $board));
+        $pq = new SplMinHeap();
+        $pq->insert([0, [$s, strpos($s, '0'), 0]]);
+        while ($pq->count()) {
+            $current = $pq->current();
+            $pq->next();
+            [$s, $i, $cnt] = $current[1];
+            $used[$s] = true;
+            if ($s == '123450') return $cnt;
+            foreach ($moves[$i] as $move) {
+                $news = $s;
+                $tmp = $news[$i];
+                $news[$i] = $news[$move];
+                $news[$move] = $tmp;
+                if (!$used[$news]) {
+                    //todo: 这里有优先级计算是否正确，请大佬帮忙看下
+                    $p = $cnt + 1 + max(abs(2 - 1 - intval($i / 3)), abs(3 - 1 - $i % 3));
+                    $pq->insert([$p, [$news, $move, $cnt + 1]]);
+                }
+            }
         }
         return -1;
     }
