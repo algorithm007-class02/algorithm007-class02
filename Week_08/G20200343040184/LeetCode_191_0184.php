@@ -34,11 +34,42 @@
  */
 class Solution {
     /**
+     * 方法一
      * @param Integer $n
      * @return Integer
      */
-    function reverseBits($n) {
-        
+    function hammingWeight1($n) {
+        $count = 0;
+        while ($n) {
+            $count++;
+            $n &= $n - 1;//拿掉最低位的1
+        }
+        return $count;
+    }
+    /**
+     * 方法二
+     * @param Integer $n
+     * @return Integer
+     */
+    function hammingWeight2($n) {
+        $cnt = 0;
+        while ($n) {
+            $cnt += $n & 1;
+            $n >>= 1;
+        }
+        return $cnt;
+    }
+
+    function hammingWeight($n) {
+        $count = 0;
+        $mask = 1;
+        for ($i = 0; $i < 32; $i++) {
+            if ($n & $mask) {
+                $count++;
+            }
+            $mask = $mask << 1;
+        }
+        return $count;
     }
 }
 // @lc code=end
