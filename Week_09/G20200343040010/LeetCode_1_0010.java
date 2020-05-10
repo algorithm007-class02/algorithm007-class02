@@ -12,6 +12,7 @@ import java.util.HashMap;
  *
  * s = "loveleetcode",
  * 返回 2.
+ *
  */
 public class FirstUniqChar {
 
