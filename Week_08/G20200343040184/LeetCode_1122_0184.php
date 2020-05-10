@@ -26,7 +26,7 @@
 class Solution {
 
     /**
-     * 方法一
+     * 方法一:计数排序
      * @param Integer[] $arr1
      * @param Integer[] $arr2
      * @return Integer[]

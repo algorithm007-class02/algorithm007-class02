@@ -30,24 +30,50 @@ class Solution {
      * @return Integer
      */
     function reversePairs($nums) {
+        return $this->mergesort($nums, 0, count($nums) - 1);
         return $this->mergesort_and_count($nums, 0, count($nums) - 1);
     }
 
-    function mergesort_and_count(&$nums, $start, $end) {
-        if ($start < $end) {
-            //$mid = ($start + $end) >> 1;
-            $mid = $start + (($end - $start) >> 1);
-            $count = $this->mergesort_and_count($nums, $start, $mid) + $this->mergesort_and_count($nums, $mid + 1, $end);
-            $j = $mid + 1;
-            for ($i = $start; $i <= $mid; $i++) {
-                while ($j <= $end && $nums[$i] > $nums[$j] * 2) $j++;
-                $count += $j - ($mid + 1);
-            }
-            $this->merge($nums, $start, $mid, $end);
-            return $count;
-        } else {
-            return 0;
+    /**
+     * 参考链接
+     * https://leetcode.com/problems/reverse-pairs/discuss/97306
+     * @param [type] $nums
+     * @param [type] $start
+     * @param [type] $end
+     * @return int
+     */
+    function mergesort(&$nums, $start, $end) {
+        if ($start >= $end) return 0;
+        $mid = $start + (($end - $start) >> 1);
+        $count = $this->mergesort($nums, $start, $mid) + $this->mergesort($nums, $mid + 1, $end);
+        $cache = [];
+        $i = $t = $start;
+        $c = 0;
+        for ($j = $mid + 1; $j <= $end; $j++, $c++) {
+            while ($i <= $mid && $nums[$i] <= 2 * $nums[$j]) $i++;
+            while ($t <= $mid && $nums[$t] < $nums[$j]) $cache[$c++] = $nums[$t++];
+            $cache[$c] = $nums[$j];
+            $count += $mid - $i + 1;
         }
+        while ($t <= $mid) $cache[$c++] = $nums[$t++];
+        for ($i = 0; $i < $c; $i++) {
+            $nums[$start + $i] = $cache[$i];
+        } 
+        return $count;
+    }
+
+    function mergesort_and_count(&$nums, $start, $end) {
+        if ($start >= $end) return 0;
+        //$mid = ($start + $end) >> 1;
+        $mid = $start + (($end - $start) >> 1);
+        $count = $this->mergesort_and_count($nums, $start, $mid) + $this->mergesort_and_count($nums, $mid + 1, $end);
+        $j = $mid + 1;
+        for ($i = $start; $i <= $mid; $i++) {
+            while ($j <= $end && $nums[$i] > $nums[$j] * 2) $j++;
+            $count += $j - ($mid + 1);
+        }
+        $this->merge($nums, $start, $mid, $end);
+        return $count;
     }
 
     function merge(&$nums, $start, $mid, $end) {
