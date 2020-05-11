@@ -10,7 +10,7 @@ class Solution {
                 res[idx][1] = Math.max(res[idx][1], interval[1]);
             }
         }
-        //去除多余的00数据
+        //保留合并的数据
         return Arrays.copyOf(res, idx + 1);
     }
 }
