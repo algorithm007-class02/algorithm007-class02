@@ -6,7 +6,7 @@ private void swap(int[] nums, int index1, int index2) {
 }   
 ```
 
- >选择排序：每一轮选择最小元素交换到未排定部分的开头
+ > 选择排序：每一轮选择最小元素交换到未排定部分的开头
 
  ```java
 public int[] sortArray(int[] nums) {
@@ -44,7 +44,7 @@ public int[] sortArray(int[] nums) {
 }
 ```
 
->  // 冒泡排序
+> 冒泡排序
 
 ```java
 public int[] sortArray(int[] nums) {
