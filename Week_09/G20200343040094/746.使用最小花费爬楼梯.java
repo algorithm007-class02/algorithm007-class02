@@ -47,11 +47,13 @@
 // @lc code=start
 class Solution {
     public int minCostClimbingStairs(int[] cost) {
-        for (int i = 2; i < cost.length; ++i) {
-            cost[i] += Math.min(cost[i-1], cost[i-2]);
+        int prev = 0, curr = 0;
+        for (int i = 0; i < cost.length; ++i) {
+            int tmp = curr;
+            curr = Math.min(prev, curr) + cost[i];
+            prev = tmp;
         }
-        return Math.min(cost[cost.length - 1], cost[cost.length - 2]);
+        return Math.min(prev, curr);
     }
 }
 // @lc code=end
-
