@@ -1,6 +1,8 @@
 package homework
 
-import "container/list"
+import (
+	"container/list"
+)
 
 type LRUNode struct {
 	key int
@@ -26,7 +28,8 @@ func Constructor(capacity int) LRUCache {
 func (this *LRUCache) Get(key int) int {
 	if v, ok := this.cacheMap[key]; ok{
 		this.cacheList.Remove(v)
-		this.cacheList.PushBack(v.Value)
+		v = this.cacheList.PushBack(v.Value)
+		this.cacheMap[key] = v
 		return v.Value.(LRUNode).value
 	}
 
@@ -38,9 +41,10 @@ func (this *LRUCache) Put(key int, value int)  {
 	if v, ok := this.cacheMap[key]; ok{
 		this.cacheList.Remove(v)
 		v.Value = LRUNode{key, value}
-		this.cacheList.PushBack(v.Value)
+		v = this.cacheList.PushBack(v.Value)
+		this.cacheMap[key] = v
 	}else {
-		if this.cacheList.Len() == this.capacity{
+		if this.cacheList.Len() >= this.capacity{
 			front := this.cacheList.Front()
 			this.cacheList.Remove(front)
 			delete(this.cacheMap, front.Value.(LRUNode).key)
