@@ -58,7 +58,7 @@ class Solution {
                             continue;
                         }
                         String str = new String(chars);
-                        // 符合条件：在 wordList 中 && 之前的层没有使用过
+                        // 符合条件：在 wordList 中并且之前的层（路径）中没有使用过
                         if (distSet.contains(str) && !visited.contains(str)) {
                             // 生成新的路径
                             List<String> pathList = new ArrayList<>(path);
